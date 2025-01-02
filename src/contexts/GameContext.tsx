@@ -82,11 +82,10 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       if (isCorrect) {
         updatedPlayers[guessingPlayerIndex].score += scoreChange;
-        // Only show toast once
         toast({
           title: "Great job! 🎉",
           description: `+${scoreChange} points!`,
-          duration: 2000, // Toast will disappear after 2 seconds
+          duration: 1000, // Changed to 1000ms (1 second)
         });
       } else {
         const creatorScore = calculateScore(isCorrect, prev.currentRound, false);
@@ -95,7 +94,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
           title: "Nice try!",
           description: `${updatedPlayers[creatingPlayerIndex].name} gets ${creatorScore} points!`,
           variant: "destructive",
-          duration: 2000,
+          duration: 1000, // Changed to 1000ms (1 second)
         });
       }
 

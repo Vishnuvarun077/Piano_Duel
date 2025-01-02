@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import confetti from 'canvas-confetti';
+import { playSuccessSound } from "@/utils/audioUtils";
 
 interface GameWinnerModalProps {
   isOpen: boolean;
@@ -23,6 +24,7 @@ const GameWinnerModal = ({ isOpen, winner, score, onClose, onPlayAgain }: GameWi
       spread: 70,
       origin: { y: 0.6 }
     });
+    playSuccessSound();
   };
 
   useEffect(() => {

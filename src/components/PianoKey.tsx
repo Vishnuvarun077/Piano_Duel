@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { cn } from '@/lib/utils';
+import { playNote } from '@/utils/audioUtils';
 
 interface PianoKeyProps {
   note: string;
@@ -18,33 +19,9 @@ const PianoKey: React.FC<PianoKeyProps> = ({
   onPress,
   className,
 }) => {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    // Create audio element for this note
-    audioRef.current = new Audio(`/piano-samples/${note}.mp3`);
-    audioRef.current.preload = 'auto';
-    return () => {
-      if (audioRef.current) {
-        audioRef.current = null;
-      }
-    };
-  }, [note]);
-
-  const playNote = async () => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      try {
-        await audioRef.current.play();
-      } catch (error) {
-        console.error('Error playing audio:', error);
-      }
-    }
-  };
-
   const handlePress = () => {
     if (!isDisabled) {
-      playNote();
+      playNote(note);
       onPress(note);
     }
   };
