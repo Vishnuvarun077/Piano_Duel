@@ -22,7 +22,7 @@ const PianoKey: React.FC<PianoKeyProps> = ({
   const [isBeingPressed, setIsBeingPressed] = useState(false);
   const [touchStarted, setTouchStarted] = useState(false);
 
-  const handlePress = (e: React.MouseEvent | React.TouchEvent) => {
+  const handlePress = (e:React.TouchEvent) => {
     // Prevent default to avoid any unwanted behaviors
     e.preventDefault();
     
