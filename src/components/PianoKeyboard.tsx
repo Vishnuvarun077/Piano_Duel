@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PianoKey from './PianoKey';
 import { cn } from '@/lib/utils';
 
@@ -34,11 +34,11 @@ const PianoKeyboard: React.FC<PianoKeyboardProps> = ({
   return (
     <div
       className={cn(
-        'flex justify-center p-8 transition-transform duration-300',
+        'flex justify-center p-4 md:p-8 transition-transform duration-300',
         isRotated && 'rotate-180'
       )}
     >
-      <div className="flex relative">
+      <div className="flex relative perspective-1000">
         {keys.map(({ note, isBlack }) => (
           <PianoKey
             key={note}
@@ -47,6 +47,7 @@ const PianoKeyboard: React.FC<PianoKeyboardProps> = ({
             isPressed={pressedKey === note}
             isDisabled={isDisabled}
             onPress={handleKeyPress}
+            className="transform-style-preserve-3d"
           />
         ))}
       </div>
